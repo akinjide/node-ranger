@@ -1,6 +1,6 @@
 {
   "name": "node-ranger",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Range function for Node.js.",
   "main": "index.js",
   "scripts": {
