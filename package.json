@@ -1,0 +1,32 @@
+{
+  "name": "ranger",
+  "version": "0.1.0",
+  "description": "Range function for Node.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "node",
+    "loop",
+    "for",
+    "range"
+  ],
+  "author": "Akinjide Bankole <r@akinjide.me>",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "mocha": "^2.5.3"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-abankole/ranger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andela-abankole/ranger/issues"
+  },
+  "homepage": "https://github.com/andela-abankole/ranger#readme"
+}
