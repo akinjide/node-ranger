@@ -1,4 +1,6 @@
-# Ranger
+# node-ranger
+
+[![Build Status](https://travis-ci.org/andela-abankole/ranger.svg?branch=master&style=flat)](https://travis-ci.org/andela-abankole/ranger)
 
 *Range function for Node.js*
 
@@ -11,7 +13,7 @@
 To install `ranger` using [npm](https://www.npmjs.org/), simply run:
 
 ```console
-$ npm install ranger
+$ npm install node-ranger
 ```
 
 In the root of your project directory.
