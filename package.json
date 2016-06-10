@@ -1,5 +1,5 @@
 {
-  "name": "ranger",
+  "name": "node-ranger",
   "version": "0.1.0",
   "description": "Range function for Node.js.",
   "main": "index.js",
@@ -23,10 +23,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andela-abankole/ranger.git"
+    "url": "git+https://github.com/andela-abankole/node-ranger.git"
   },
   "bugs": {
-    "url": "https://github.com/andela-abankole/ranger/issues"
+    "url": "https://github.com/andela-abankole/node-ranger/issues"
   },
-  "homepage": "https://github.com/andela-abankole/ranger#readme"
+  "homepage": "https://github.com/andela-abankole/node-ranger#readme",
 }
