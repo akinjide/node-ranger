@@ -1,6 +1,10 @@
 # node-ranger
 
-[![Build Status](https://travis-ci.org/andela-abankole/ranger.svg?branch=master&style=flat)](https://travis-ci.org/andela-abankole/ranger)
+
+[![npm](https://img.shields.io/npm/v/node-ranger.svg?style=flat)](https://npmjs.org/package/node-ranger)
+[![npm](https://img.shields.io/npm/dm/node-ranger.svg?style=flat)](https://npmjs.org/package/node-ranger)
+[![Build Status](https://travis-ci.org/andela-abankole/node-ranger.svg?branch=master&style=flat)](https://travis-ci.org/andela-abankole/ranger)
+
 
 *Range function for Node.js*
 
@@ -39,7 +43,7 @@ console.log(ranger.getObject(1, 10, 2));
 // {0: 1, 1: 3, 2: 5, 3: 7, 4: 9}
 ```
 
-The methods above use the reduce method, if you prefer the native for loop:
+The methods above use the reduce method, if you prefer the native `for..loop`:
 
 ```javascript
 var ranger = require('ranger');
@@ -57,7 +61,7 @@ console.log(ranger.fill(1, 10, 2));
 
 
 ## Changelog
-v0.1.0: 6/10/16, 11:55 AM
+v1.0.0: 6/10/16, 11:55 AM
 
 ```text
   - Initial Release
