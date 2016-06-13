@@ -33,6 +33,12 @@ describe('ranger()', function() {
 
       assert.equal(range, "start and stop are required!");
     });
+
+    it('should return an error if stop is missing', function() {
+      var range = ranger.getArray(1);
+
+      assert.equal(range, "start and stop are required!");
+    });
   });
 
 
@@ -58,6 +64,12 @@ describe('ranger()', function() {
 
       assert.equal(range, "start and stop are required!");
     });
+
+    it('should return an error if stop is missing', function() {
+      var range = ranger.getArray(1);
+
+      assert.equal(range, "start and stop are required!");
+    });
   });
 
 
@@ -80,6 +92,12 @@ describe('ranger()', function() {
 
     it('should return an error if start and stop are missing', function() {
       var range = ranger.fill();
+
+      assert.equal(range, "start and stop are required!");
+    });
+
+    it('should return an error if stop is missing', function() {
+      var range = ranger.fill(1);
 
       assert.equal(range, "start and stop are required!");
     });
