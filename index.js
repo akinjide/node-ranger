@@ -19,6 +19,8 @@ function fill(start, stop, step) {
   var result = [],
       iterator = start;
 
+  if (!start && !stop) return "start and stop are required!";
+
   step = step || 1;
   result = [];
 
@@ -38,6 +40,8 @@ function fill(start, stop, step) {
  */
 function getObject(start, stop, step) {
   var iterationCount;
+
+  if (!start && !stop) return "start and stop are required!";
 
   step = step || 1;
 
