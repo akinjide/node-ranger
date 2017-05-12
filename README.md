@@ -3,7 +3,7 @@
 
 [![npm](https://img.shields.io/npm/v/node-ranger.svg?style=flat)](https://npmjs.org/package/node-ranger)
 [![npm](https://img.shields.io/npm/dm/node-ranger.svg?style=flat)](https://npmjs.org/package/node-ranger)
-[![Build Status](https://travis-ci.org/andela-abankole/node-ranger.svg?branch=master&style=flat)](https://travis-ci.org/andela-abankole/ranger)
+[![Build Status](https://travis-ci.org/akinjide/node-ranger.svg?branch=master)](https://travis-ci.org/akinjide/node-ranger)
 
 
 *Range function for Node.js*
