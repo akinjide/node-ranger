@@ -15,8 +15,8 @@
   "author": "Akinjide Bankole <r@akinjide.me>",
   "license": "UNLICENSED",
   "devDependencies": {
-    "mocha": "^2.5.3",
-    "should": "^11.2.1"
+    "mocha": "^6.0.1",
+    "should": "^13.2.3"
   },
   "directories": {
     "test": "test"
