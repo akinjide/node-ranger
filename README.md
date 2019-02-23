@@ -9,7 +9,7 @@
 *Range function for Node.js*
 
 
-![Frankenstein Sketch](_static/frankenstein-sketch.png)
+![Frankenstein Sketch](static/frankenstein-sketch.png)
 
 
 ## Installation
@@ -25,7 +25,7 @@ In the root of your project directory.
 
 ## Usage
 
-Once you have `ranger` installed, you can use it to easily get an Array or Object of numbers providing three arguments, a start, end and step value. The function call ranger.fill(1, 10, 2) should return [1, 3, 5, 7, 9]:
+Once you have `ranger` installed, you can use it to easily get an Array or Object of numbers providing three arguments, a start, end and step value. The function call `ranger.fill(1, 10, 2)` should return `[1, 3, 5, 7, 9]`:
 
 ```javascript
 var ranger = require('ranger')
@@ -45,7 +45,17 @@ range.then(console.log)
 // {0: 1, 1: 3, 2: 5, 3: 7, 4: 9}
 ```
 
-The method above uses the reduce method, if you prefer the native `for..loop`, `use .fill()`:
+The method above uses the reduce method, if you prefer the native `for..loop`, `use .fill()`.
+
+Want alphabets range as an Array? Got you!
+
+```javascript
+var ranger = require('ranger')
+var range = ranger.rune('a', 'e')
+
+range.then(console.log)
+// ['a', 'b', 'c', 'd', 'e', 'f']
+```
 
 
 ## Author's Journal
@@ -53,12 +63,19 @@ The method above uses the reduce method, if you prefer the native `for..loop`, `
 - I didn't want to call this library `ranger`, but I don't have
   any ideas. ¯\\_(ツ)_/¯
 - ~~Implementing Async soon!~~
-- Implementing characters soon!
+- ~~Implementing characters soon!~~
 
 
 ## Changelog
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
+
+v2.1.0 : 2/23/19, 11:37 PM
+```text
+  - Add .rune([start], stop[, order])
+  - Add Tests for #rune() Callback and Promises
+  - #fill(), #object() and #rune() rejects with error type.
+```
 
 v2.0.0 : 5/14/18, 3:13 PM
 ```text

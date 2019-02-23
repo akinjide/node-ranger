@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * Export modules.
  *
@@ -7,6 +8,7 @@
  */
 exports.fill = fill;
 exports.object = object;
+exports.rune = rune;
 
 
 /**
@@ -26,13 +28,13 @@ exports.object = object;
  *
  *
  * ranger.fill() -> Error: needs more arguments
- * range.fill(4) -> Promise { [ 1, 2, 3, 4] }
- * range.fill(0, 4) -> Promise { [ 1, 2, 3, 4] }
- * range.fill(0) -> Promise { [] }
- * range.fill(4, 0, -1) -> Promise { [ 4, 3, 2, 1 ] }
- * range.fill(0, 4, -1) -> Promise { [] }
- * range.fill(0, 1, 0) -> Error: step cannot be zero
- * range.fill(0.2, 4.0) -> Promise { [ 0, 1, 2, 3 ] }
+ * ranger.fill(4) -> Promise { [ 1, 2, 3, 4] }
+ * ranger.fill(0, 4) -> Promise { [ 1, 2, 3, 4] }
+ * ranger.fill(0) -> Promise { [] }
+ * ranger.fill(4, 0, -1) -> Promise { [ 4, 3, 2, 1 ] }
+ * ranger.fill(0, 4, -1) -> Promise { [] }
+ * ranger.fill(0, 1, 0) -> Error: step cannot be zero
+ * ranger.fill(0.2, 4.0) -> Promise { [ 0, 1, 2, 3 ] }
  *
  *
  * @api private
@@ -44,7 +46,7 @@ function fill(start, stop, step, callback) {
   var error;
 
   if (typeof step === 'function') {
-    callback = opts;
+    callback = step;
   }
 
   if (typeof callback !== 'function') {
@@ -53,7 +55,7 @@ function fill(start, stop, step, callback) {
 
   var promise = new Promise(function(resolve, reject) {
     if (args.length === 0) {
-      return reject(new Error("fill() expected least 1 argument"));
+      return reject(new RangeError('fill() expected least 1 argument'));
     }
 
     if (args.length === 1) {
@@ -69,7 +71,7 @@ function fill(start, stop, step, callback) {
     }
 
     step = Math.floor(step) || (function() {
-      return reject(new Error("fill() step must not be zero"));
+      return reject(new RangeError('fill() step must not be zero'));
     })();
 
     if (step > 0) {
@@ -88,7 +90,7 @@ function fill(start, stop, step, callback) {
 
     resolve(data);
   });
-  
+
   // will always return a promise and if passed a callback (assuming it's a NodeJS-style callback),
   promise.then(callback.bind(null, null), callback);
   return promise;
@@ -112,7 +114,7 @@ function fill(start, stop, step, callback) {
  *                            with 0]
  *
  * ranger.object() -> Error: needs more arguments
- * range.object(4) -> Promise { { '0': 1, '1': 2, '2': 3, '3': 4 } }
+ * ranger.object(4) -> Promise { { '0': 1, '1': 2, '2': 3, '3': 4 } }
  *
  *
  * @api private
@@ -124,7 +126,7 @@ function object(start, stop, step, callback) {
   var error;
 
   if (typeof step === 'function') {
-    callback = opts;
+    callback = step;
   }
 
   if (typeof callback !== 'function') {
@@ -132,11 +134,11 @@ function object(start, stop, step, callback) {
   }
 
   var promise = new Promise(function(resolve, reject) {
-    if (Object.keys(args).length === 0) {
-      return reject(new Error("object() expected least 1 argument"));
+    if (args.length === 0) {
+      return reject(new RangeError('object() expected least 1 argument'));
     }
 
-    if (Object.keys(args).length === 1) {
+    if (args.length === 1) {
       stop = Math.floor(start) - 1;
       start = 0;
     } else {
@@ -149,10 +151,10 @@ function object(start, stop, step, callback) {
     }
 
     step = Math.floor(step) || (function() {
-      return reject(new Error("object() step must not be zero"));
+      return reject(new RangeError('object() step must not be zero'));
     })();
 
-    iterationCount = Array.apply(null, new Array(Math.round((Math.abs(stop - start) + 1) / Math.abs(step))));
+    iterationCount = Array.apply(null, new Array(Math.round((Math.abs(stop - start) + step) / Math.abs(step))));
 
     previousValue = iterationCount.reduce(function(previousValue, currentValue, index) {
       previousValue[index] = start + index * step;
@@ -160,6 +162,79 @@ function object(start, stop, step, callback) {
     }, {});
 
     resolve(previousValue);
+  });
+
+  promise.then(callback.bind(null, null), callback);
+  return promise;
+}
+
+
+/**
+ * [rune Use String.prototype.substring to get a range of alphabets]
+ * implementation supports dual promise/callback API's. Module can be used either through
+ * a promise or through the standard NodeJS error-first callback
+ *
+ *
+ * Arguments:   [start], stop[, order]
+ *
+ *
+ * @param {Integer}  start    [The character at which to start looping] (required)
+ * @param {Integer}  stop     [The character at which to stop looping] (required)
+ * @param {Integer}  order    [Order Ascending or Descending alphabets range] (optional)
+ * @param {function} callback [standard NodeJS error-first callback] (optional)
+ * @return {Promise}          [The Array containing the alphabets generated]
+ *
+ *
+ * ranger.rune() -> Error: needs more arguments
+ * ranger.rune('a') -> Promise { [ 'a', ..., 'z'] }
+ * ranger.rune('A','F') -> Promise { ['A','B','C','D','E','F'] }
+ * ranger.rune(0) -> Error: needs string arguments
+ * ranger.rune('m', 'r') -> Promise { ['m', 'n', 'o', 'p', 'q', 'r'] }
+ * ranger.rune('m', 'r', true) -> Promise { ['r', 'q', 'p', 'o', 'n', 'm']  }
+ *
+ *
+ * @api private
+ */
+function rune(start, stop, order, callback) {
+  var args = arguments;
+  var chars = 'abcdefghijklmnopqrstuvwxyz';
+  var values;
+
+  if (typeof order === 'function') {
+    callback = order;
+  }
+
+  if (typeof callback !== 'function') {
+    callback = function () {};
+  }
+
+  var promise = new Promise(function(resolve, reject) {
+    if (args.length === 0) {
+      return reject(new RangeError('rune() expected least 1 argument'));
+    }
+
+    if (typeof start === 'number') {
+      return reject(new TypeError('rune() expected argument type "string"'));
+    }
+
+    if (args.length === 1) {
+      stop = 'z';
+    }
+
+    if (start === start.toUpperCase()) {
+      stop = stop.toUpperCase();
+      chars = chars.toUpperCase();
+    }
+
+    values = chars.substring(chars.indexOf(start), chars.indexOf(stop) + 1).split('');
+
+    if (order) {
+      return resolve(values.sort(function(a, b) {
+        return b.charCodeAt() - a.charCodeAt();
+      }));
+    }
+
+    resolve(values);
   });
 
   promise.then(callback.bind(null, null), callback);
