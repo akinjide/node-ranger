@@ -1,6 +1,6 @@
 {
   "name": "node-ranger",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Range function for Node.js.",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,6 @@
   "author": "Akinjide Bankole <r@akinjide.me>",
   "license": "UNLICENSED",
   "devDependencies": {
-    "assert": "^1.4.1",
     "mocha": "^2.5.3",
     "should": "^11.2.1"
   },
